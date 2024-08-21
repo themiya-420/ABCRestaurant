@@ -1,1 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+<queries>
+    <query id="create_user_table">
+        <![CDATA[
+            CREATE TABLE users (
+                id varchar(255) NOT NULL,
+                username varchar(255) NOT NULL,
+                password varchar(500) NOT NULL,
+                email varchar(255),
+                phone varchar(10),
+                role varchar(40),
+                PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+
+    <query id="signup_user">
+        <![CDATA[
+            INSERT INTO  users(id, username, password, email, phone, role)
+            VALUES(?, ?, ?, ?, ?, ?)
+        ]]>
+    </query>
+</queries>
