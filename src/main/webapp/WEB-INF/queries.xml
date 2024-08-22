@@ -22,4 +22,10 @@
             VALUES(?, ?, ?, ?, ?, ?)
         ]]>
     </query>
+    
+    <query id="get_user_ids">
+        <![CDATA[
+           SELECT id FROM users;
+        ]]>
+    </query>
 </queries>

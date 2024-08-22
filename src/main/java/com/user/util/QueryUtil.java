@@ -18,7 +18,7 @@ public class QueryUtil extends CommonUtil {
         Element element = null;
 
         nodeList = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().parse(new File(System.getProperty("catalina.base") + "wtwebapps\\ABCRestaurant\\WEB-INF\\queries.xml"))
+                .newDocumentBuilder().parse(new File(System.getProperty("catalina.base") + "/wtpwebapps/ABCRestaurant/WEB-INF/queries.xml"))
                 .getElementsByTagName(CommonConstants.Tag_Name);
 
         for (int i = 0; i < nodeList.getLength(); i++) {
