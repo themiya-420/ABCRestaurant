@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
  <script src="https://cdn.tailwindcss.com"></script>
-<title>ABC Restaurant | SignUp</title>
+<title>ABC Restaurant | SignIn </title>
 </head>
 <body>
 
@@ -13,17 +13,17 @@
 <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
   <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
     <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+      
       <div class="mt-12 flex flex-col items-center">
         <h1 class="text-2xl xl:text-3xl font-extrabold">
-          Sign up
+          Sign In
         </h1>
         <div class="w-full flex-1 mt-8">
+
           <div class="mx-auto max-w-xs">
 
-            <form action="<%= request.getContextPath()%>/signup" method="post">
-              <input
-                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="text" placeholder="Username" name="username"/>
+            <form action="<%= request.getContextPath()%>/signin" method="post">
+              
               <input
                       class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="email" placeholder="Email" name="email"/>
@@ -31,20 +31,15 @@
                       class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="password" placeholder="Password" name="password"/>
 
-              <input
-                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="text" placeholder="Phone" name="phone"/>
-
-              <input
-                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="text" placeholder="Role" name="role"/>
-              <Input type="submit" value="Sign Up"
+             
+              <Input type="submit" value="Sign In"
                       class="mt-5 mb-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-               
-               <span class="text-gray-500 mt-5">Already Have an Account ? <a href="<%= request.getContextPath()%>/signIn.jsp"><span class="text-blue-400">SignIn</span></a></span>
                 
+     
+     		   <span class="text-gray-500 mt-5">Do Not Have an Account ? <a href="<%= request.getContextPath()%>/index.jsp"><span class="text-blue-400">SignUp</span></a></span>
+     
               <p class="mt-6 text-xs text-gray-600 text-center">
-                I agree to abide by templatana's
+                I agree to abide by 
                 <a href="#" class="border-b border-gray-500 border-dotted">
                   Terms of Service
                 </a>
