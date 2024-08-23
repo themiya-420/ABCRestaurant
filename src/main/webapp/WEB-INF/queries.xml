@@ -28,4 +28,10 @@
            SELECT id FROM users;
         ]]>
     </query>
+    
+     <query id="signin_user">
+        <![CDATA[
+           SELECT password FROM users WHERE email = ?;
+        ]]>
+    </query>
 </queries>

@@ -56,7 +56,7 @@ public class SignUpServelet extends HttpServlet {
         iUserService.userSignUp(user);
         
         request.setAttribute("User", user);
-        jakarta.servlet.RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+        jakarta.servlet.RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/signIn.jsp");
         requestDispatcher.forward(request, response);
      
 	}

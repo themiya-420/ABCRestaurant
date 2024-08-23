@@ -8,7 +8,7 @@ public interface IUserService {
 	
 	  public void userSignUp(User user);
 	  
-	  public void userSingIn(User user);
+	  public boolean userSingIn(String email, String password);
 
 	    public ArrayList<User> getUsers();
 

@@ -37,12 +37,14 @@ public class CommonConstants {
 
     public static final String Create_User_Table = "create_user_table";
 
-    public static final String signup_user = "signup_user";;
+    public static final String signup_user = "signup_user";
+    
+    public static final String signin_user = "signin_user";
 
-    public static final String update_user = "update_user";;
+    public static final String update_user = "update_user";
 
-    public static final String delete_user = "delete_user";;
+    public static final String delete_user = "delete_user";
 
-    public static final String get_user_ids = "get_user_ids";;
+    public static final String get_user_ids = "get_user_ids";
 
 }

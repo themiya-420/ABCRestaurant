@@ -14,4 +14,14 @@
     <servlet-name>SignUpServelet</servlet-name>
     <url-pattern>/SignUpServelet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SignInServelet</display-name>
+    <servlet-name>SignInServelet</servlet-name>
+    <servlet-class>com.user.servelet.SignInServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignInServelet</servlet-name>
+    <url-pattern>/SignInServelet</url-pattern>
+  </servlet-mapping>
 </web-app>

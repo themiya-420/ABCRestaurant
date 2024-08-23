@@ -84,6 +84,11 @@ public class UserServiceImpl implements IUserService {
             connection.setAutoCommit(false);
 
             user.setId(userid);
+            
+            // Hash the password before saving
+            String hashedPassword = CommonUtil.hashPassword(user.getPassword());
+            user.setPassword(hashedPassword);
+            
 
             preparedStatement.setString(CommonConstants.Column_Index_one, user.getId());
             preparedStatement.setString(CommonConstants.Column_Index_two, user.getUsername());
@@ -165,8 +170,9 @@ public class UserServiceImpl implements IUserService {
 
 	                connection.close();
 	            }
+	            
 	            if (preparedStatement != null) {
-	                preparedStatement.close();
+	            	preparedStatement.close();
 	            }
 	        } catch (SQLException e){
 	            System.out.println("SQL error" + e.getMessage());
@@ -180,9 +186,46 @@ public class UserServiceImpl implements IUserService {
 	    }
 
 	@Override
-	public void userSingIn(User user) {
+	public boolean userSingIn(String email, String password) {
 		// TODO Auto-generated method stub
 		
+		   boolean isAuthenticated = false;
+
+		    try {
+		        connection = DBConnection.getConnection();
+		        preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.signin_user));
+
+		        preparedStatement.setString(1, email);
+
+		        ResultSet resultSet = preparedStatement.executeQuery();
+
+		        if (resultSet.next()) {
+		            String storedPassword = resultSet.getString("password");
+
+		            // Assuming passwords are stored in a hashed form, use a method to validate the hash
+		            if (CommonUtil.validatePassword(password, storedPassword)) {
+		                isAuthenticated = true;
+		            }
+		        }
+
+		    } catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+		        System.out.println("Connection error" + e.getMessage());
+		    } finally {
+		        try {
+		            if (connection != null) {
+		                connection.close();
+		            }
+		            if (preparedStatement != null) {
+		                preparedStatement.close();
+		            }
+		        } catch (SQLException e) {
+		            System.out.println("SQL error" + e.getMessage());
+		        }
+		    }
+
+		    return isAuthenticated;
 	}
 
+
+	
 }
