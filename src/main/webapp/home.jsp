@@ -28,6 +28,12 @@
                 behavior: 'smooth'
             });
         }
+        
+        function scrollToNextOtherDiv() {
+            document.getElementById('4').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     </script>
 <title>ABCRestaurant | Home</title>
 </head>
@@ -77,7 +83,7 @@
                         class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Reserve</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="<%= request.getContextPath()%>/gallery.jsp"
                         class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Gallery</a>
                 </li>
                 <li>
@@ -85,7 +91,7 @@
                         class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">FAQ</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="<%= request.getContextPath()%>/contact.jsp"
                         class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                 </li>
             </ul>
@@ -199,7 +205,24 @@
     </div>
 </div>
 
-<div id="3" class="mt-8 bg-violet-900 pt-9">
+
+<section class="bg-whiteoverflow-hidden">
+ <div id="3" class="max-w-screen-xl 2xl:max-w-screen-3xl px-8 md:px-12 mx-auto py-12 lg:py-24 space-y-24 h-svh flex flex-col justify-center">
+ <h2 class="text-3xl font-bold ">Meet Our Chefs.</h2>
+  <div class="flex flex-col sm:flex-row mx-auto">
+   <a href="#_"> <img src="https://plus.unsplash.com/premium_photo-1687697861242-03e99059e833?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  rotate-6 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_"> </a>
+   <a href="#_"> <img src="https://plus.unsplash.com/premium_photo-1661778156582-670d5b62a9e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " class="rounded-xl  -rotate-12 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_"> </a>
+   <a href="#_"> <img src="https://plus.unsplash.com/premium_photo-1683707120233-0ad52cb97b7b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  rotate-6 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_"> </a>
+   <a href="#_"> <img src="https://plus.unsplash.com/premium_photo-1661778021952-65997d03b2b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl  -rotate-12 hover:rotate-0 duration-500 hover:-translate-y-12 h-full w-full object-cover hover:scale-150 transform origin-bottom" alt="#_"> </a>
+   <!--- Ends component -->
+  </div>
+  
+  <button id="scrollBtn3" class="bg-purple-700 max-w-[300px] text-white px-2 py-2 mt-[50px] rounded-xl" >Scroll Down To Learn More</button>
+ </div>
+ 
+</section>
+
+<div id="4"  class="mt-8 bg-violet-900 pt-9">
   <div class="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
     <div class="flex flex-col justify-between sm:px-[18px] md:flex-row md:px-10">
       <div class="md:w-[316px]">
@@ -333,6 +356,8 @@
 <script>
     document.getElementById('scrollBtn').addEventListener('click', scrollToDiv);
     document.getElementById('scrollBtn2').addEventListener('click', scrollToNextDiv);
+    document.getElementById('scrollBtn3').addEventListener('click', scrollToNextOtherDiv);
+
 </script>
 
 		
