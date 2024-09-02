@@ -24,4 +24,14 @@
     <servlet-name>SignInServelet</servlet-name>
     <url-pattern>/SignInServelet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddFeedbackServelet</display-name>
+    <servlet-name>AddFeedbackServelet</servlet-name>
+    <servlet-class>com.user.servelet.AddFeedbackServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddFeedbackServelet</servlet-name>
+    <url-pattern>/AddFeedbackServelet</url-pattern>
+  </servlet-mapping>
 </web-app>

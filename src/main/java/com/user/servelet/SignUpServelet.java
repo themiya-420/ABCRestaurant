@@ -58,6 +58,8 @@ public class SignUpServelet extends HttpServlet {
         request.setAttribute("User", user);
         jakarta.servlet.RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/signIn.jsp");
         requestDispatcher.forward(request, response);
+        
+        
      
 	}
 

@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
  <script src="https://cdn.tailwindcss.com"></script>
-
-<title>ABCRestaurant | Gallery</title>
+<title>ABCRestaurant | FAQ</title>
 </head>
 <body>
 
@@ -56,7 +55,7 @@
                 </li>
                 <li>
                     <a href="<%= request.getContextPath()%>/gallery.jsp"
-                        class="block py-2 pl-3 pr-4 text-purple-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Gallery</a>
+                        class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Gallery</a>
                 </li>
                 <li>
                     <a href="<%= request.getContextPath()%>/faq.jsp"
@@ -64,45 +63,64 @@
                 </li>
                 <li>
                     <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                        class="block py-2 pl-3 pr-4 text-purple-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="flex flex-row justify-center items-center mt-[150px]"><h1 class="text-3xl font-bold">Take Look At ABC Restaurant's  <span class="text-purple-700 font-bold text-3xl">Glamour.</span></h1></div>
 
-<div class="grid grid-cols-2 md:grid-cols-3 gap-5 mt-[150px]">
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688025668.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029344.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029370.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029384.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029394.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029408.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029424.jpg" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029434.png" alt="Gallery image" />
-      </div>
-      <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688029447.jpg" alt="Gallery image" />
-      </div>
-      </div>
-
+<div class="py-24 px-8 max-w-5xl h-[700px] mx-auto flex flex-col md:flex-row gap-12 items-center justify-center">
+    <div class="flex flex-col text-left basis-1/2">
+        <p class="inline-block font-semibold text-primary mb-4">Insurance FAQ</p>
+        <p class="sm:text-4xl text-3xl font-extrabold text-base-content">Frequently Asked Questions</p>
+    </div>
+    <ul class="basis-1/2">
+        <li>
+            <button class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left border-t md:text-lg border-base-content/10" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="flex-1 text-base-content">How secure is my insurance information?</span>
+                <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out false"></rect>
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out false"></rect>
+                </svg>
+            </button>
+            <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden" style="transition: max-height 0.3s ease-in-out 0s;">
+                <div class="pb-5 leading-relaxed">
+                    <div class="space-y-2 leading-relaxed">We prioritize the security of your insurance information. We use advanced encryption and strict data protection measures to ensure your data is safe and confidential.</div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <button class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left border-t md:text-lg border-base-content/10" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="flex-1 text-base-content">How can I customize my insurance coverage?</span>
+                <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out false"></rect>
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out false"></rect>
+                </svg>
+            </button>
+            <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden" style="transition: max-height 0.3s ease-in-out 0s;">
+                <div class="pb-5 leading-relaxed">
+                    <div class="space-y-2 leading-relaxed">Our insurance plans are customizable. You can tailor your coverage to meet your specific needs and budget.</div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <button class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left border-t md:text-lg border-base-content/10" aria-expanded="false" onclick="toggleFAQ(this)">
+                <span class="flex-1 text-base-content">Is there a waiting period for insurance claims?</span>
+                <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out false"></rect>
+                    <rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out false"></rect>
+                </svg>
+            </button>
+            <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden" style="transition: max-height 0.3s ease-in-out 0s;">
+                <div class="pb-5 leading-relaxed">
+                    <div class="space-y-2 leading-relaxed">There may be a waiting period for certain insurance claims, depending on the policy terms and conditions. Please refer to your policy documents for details.</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
 
 <div id="4"  class="mt-8 bg-violet-900 pt-9">
   <div class="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
@@ -214,5 +232,15 @@
     </div>
   </div>
 </div>
+
+<script>
+    function toggleFAQ(button) {
+        const content = button.nextElementSibling;
+        button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") === "false" ? "true" : "false");
+        content.style.maxHeight = button.getAttribute("aria-expanded") === "true" ? content.scrollHeight + "px" : "0";
+    }
+</script>
+
+
 </body>
 </html>
