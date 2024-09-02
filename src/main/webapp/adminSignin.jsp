@@ -15,17 +15,17 @@
             class="rounded-lg mt-[200px] border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900 flex-col flex h-full items-center justify-center sm:px-4">
             <div class="flex h-full flex-col justify-center gap-4 p-6">
                 <div class="left-0 right-0 inline-block border-gray-200 px-2 py-2.5 sm:px-4">
-                    <form class="flex flex-col gap-4 pb-4">
+                    <form action="<%= request.getContextPath()%>/admin-signin" method="post" class="flex flex-col gap-4 pb-4">
                         <h1 class="mb-4 text-2xl font-bold  dark:text-white">Login</h1>
                         <div>
                             <div class="mb-2">
                                 <label class="text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    for="email">Email:</label>
+                                    for="email">Username:</label>
                             </div>
                             <div class="flex w-full rounded-lg pt-1">
                                 <div class="relative w-full"><input
                                         class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
-                                        id="email" type="email" name="email" placeholder="email@example.com"
+                                        id="username" type="text" name="username" placeholder="email@example.com"
                                         required="">
                                 </div>
                             </div>

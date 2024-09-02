@@ -53,5 +53,13 @@ public class CommonConstants {
     public static final String add_feedback = "add_feedback";
     
     public static final String get_feedbacks = "get_feedbacks";
+    
+    //admin Constants 
+    public static final String Create_Admin_Table = "create_admin_table";
+    
+    public static final String signup_admin = "signup_admin";
+    
+    public static final String signin_admin = "signin_admin";
+    
 
 }

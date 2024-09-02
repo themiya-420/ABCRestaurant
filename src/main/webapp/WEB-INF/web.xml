@@ -34,4 +34,24 @@
     <servlet-name>AddFeedbackServelet</servlet-name>
     <url-pattern>/AddFeedbackServelet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminSinginServelet</display-name>
+    <servlet-name>AdminSinginServelet</servlet-name>
+    <servlet-class>com.admin.servelet.AdminSinginServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSinginServelet</servlet-name>
+    <url-pattern>/AdminSinginServelet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminSignupServelet</display-name>
+    <servlet-name>AdminSignupServelet</servlet-name>
+    <servlet-class>com.admin.servelet.AdminSignupServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSignupServelet</servlet-name>
+    <url-pattern>/AdminSignupServelet</url-pattern>
+  </servlet-mapping>
 </web-app>
