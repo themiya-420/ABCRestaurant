@@ -76,7 +76,7 @@
     
      <query id="signin_admin">
         <![CDATA[
-           SELECT password FROM admin WHERE username = ?;
+           SELECT * FROM admin WHERE username = ?;
         ]]>
     </query>
     
