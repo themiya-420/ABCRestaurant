@@ -1,4 +1,4 @@
-package com.admin.servelet;
+package com.user.servelet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,23 +7,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-import com.admin.model.Admin;
-import com.admin.service.IAdminService;
-import com.admin.service.AdminServiceImpl;
+import com.user.model.User;
+import com.user.service.UserServiceImpl;
+import com.user.service.IUserService;
 
 /**
- * Servlet implementation class AdminSignupServelet
+ * Servlet implementation class UpdateUserServelet
  */
-@WebServlet("/admin-signup")
-public class AdminSignupServelet extends HttpServlet {
+public class UpdateUserServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSignupServelet() {
+    public UpdateUserServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,16 +39,23 @@ public class AdminSignupServelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html");
 		
-response.setContentType("text/html");
+		User user = new User();
 		
-		Admin admin = new Admin();
+		String id = request.getParameter("id");
 		
-        admin.setUsername(request.getParameter("username"));
-        admin.setPassword(request.getParameter("password"));
-        admin.setRole(request.getParameter("role"));
+		
+		System.out.println(id + "This is from Servlet");
+		
+		user.setId(id);
+		user.setUsername(request.getParameter("username"));
+        user.setPassword(request.getParameter("password"));
+        user.setEmail(request.getParameter("email"));
+        user.setPhone(request.getParameter("phone"));
+        user.setRole(request.getParameter("role"));
         
-        IAdminService iadminService = new AdminServiceImpl();
+        IUserService iUserService = new UserServiceImpl();
         
         
         
@@ -59,18 +64,16 @@ response.setContentType("text/html");
 	    PrintWriter out = response.getWriter();
 	    
 	    try {
-	    	iadminService.adminSignup(admin);
-	    	request.setAttribute("Admin", admin);
+	    	iUserService.updateUser(id ,user);
+	    	request.setAttribute("User", user);
 	        // Feedback successfully added
 	        out.println("<script type='text/javascript'>");
 	        out.println("alert('Admin Added Successfully !');");
-	        out.println("location='adminHome.jsp';");
+	        out.println("location='adminView.jsp';");
 	        out.println("</script>");
 	    } finally {
 	        out.close();
 	    }
-        
-		
 	}
 
 }

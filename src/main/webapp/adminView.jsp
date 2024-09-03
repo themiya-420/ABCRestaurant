@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import = "com.user.model.User"  %>
+<%@ page import = "com.user.service.IUserService"  %>
+<%@ page import = "com.user.service.UserServiceImpl"  %>
+<%@ page import = "java.util.ArrayList"  %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
  <script src="https://cdn.tailwindcss.com"></script>
-<title>ABC | Staff Home</title>
+<title>ABC | View Users (Admin)</title>
 </head>
 <body>
 
@@ -18,13 +24,13 @@
         </div>
         <div class="flex flex-col flex-1 overflow-y-auto">
             <nav class="flex-1 px-2 py-4 bg-gray-800">
-                <a href="#" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                <a href="<%= request.getContextPath()%>/adminHome.jsp" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    Dashboard
+                   Add USers
                 </a>
                 <a href="#" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
@@ -32,24 +38,24 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                   Add Service
+                    Delete Users
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                <a href="#" class="flex items-center px-4 py-2 mt-2 text-gray-100 bg-gray-700  hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    View Service
+                    View Users
                 </a>
                 
-                <a href="#" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                <a href="<%= request.getContextPath()%>/adminView2.jsp" class="flex items-center px-4 py-2 mt-2 text-gray-100  hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    Delete Services
+                    View Admins
                 </a>
             </nav>
         </div>
@@ -80,10 +86,75 @@
                 </button>
             </div>
         </div>
-        <div class="p-4">
-            <h1 class="text-2xl font-bold">Welcome to my dashboard!</h1>
-            <p class="mt-2 text-gray-600">This is an example dashboard using Tailwind CSS.</p>
-        </div>
+        <table class="min-w-full divide-y divide-gray-200">
+    <thead>
+        <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Userame</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Password</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        
+        	
+        	
+        	<%
+        	
+        		IUserService iUserService = new UserServiceImpl(); 
+        		ArrayList<User> UserList = iUserService.getUsers();
+	
+        	%>
+        	
+        	
+        	<%
+        		for(User user: UserList){
+        	%>
+        	<tr>
+        	
+        	<td class="px-6 py-4 whitespace-nowrap"><%= user.getId() %></td>
+          	<td class="px-6 py-4 whitespace-nowrap"><%= user.getUsername() %></td>
+          	<td class="px-6 py-4 whitespace-nowrap"><%= user.getPassword() %></td>
+          	<td class="px-6 py-4 whitespace-nowrap"><%= user.getEmail() %></td>
+          	<td class="px-6 py-4 whitespace-nowrap"><%= user.getPhone() %></td>
+          	<td class="px-6 py-4 whitespace-nowrap"><%= user.getRole() %></td>
+          	
+          	 	<td>
+          		<div class="flex flex-row gap-2">
+          			<div>
+          				<form action="<%= request.getContextPath()%>/GetUserServelet" method="post">
+          					<input type="hidden" name="id" value="<%= user.getId() %>"/>
+          					
+          					<button class="bg-blue-500 p-1 rounded-lg text-white" type="submit">
+          						Edit
+          					</button>
+          				</form>
+          			</div>
+          			<div>
+          				<form action="<%= request.getContextPath()%>/DeleteUserServelet" method="post">
+          					<input type="hidden" name="id" value="<%= user.getId() %>"/>
+          					
+          					<button class="bg-red-500 p-1 rounded-lg text-white" type="submit">
+          						Delete
+          					</button>
+          				</form>
+          			</div>
+          		</div>
+          	</td>
+  
+           
+        </tr>
+        	
+        	<%
+        		}
+        	%>
+        
+            
+       
+    </tbody>
+</table>
     </div>
     
 </div>

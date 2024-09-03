@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -156,6 +157,178 @@ public class  AdminServiceImpl implements IAdminService{
 	    }
 
 	    return role;
+		
+	}
+
+	@Override
+	public ArrayList<Admin> getAdmins() {
+		// TODO Auto-generated method stub
+		ArrayList<Admin> AdminList = new ArrayList<Admin>();
+		
+		try {
+			
+			  connection = DBConnection.getConnection();
+	          preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.get_admins));
+
+	          ResultSet rs = preparedStatement.executeQuery();
+	          
+	          while(rs.next() ) {
+	        	  
+	        	  Admin admin = new Admin();
+	        	  
+	        	  admin.setId(rs.getString(CommonConstants.Column_Index_one));
+	        	  admin.setUsername(rs.getString(CommonConstants.Column_Index_two));
+	        	  admin.setPassword(rs.getString(CommonConstants.Column_Index_three));
+	        	  admin.setRole(rs.getString(CommonConstants.Column_Index_four));
+	        	  
+	        	  AdminList.add(admin);
+	        	 
+	          }
+			
+		}catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
+		
+		return AdminList;
+	}
+
+	@Override
+	public ArrayList<Admin> getAdminByID(String id) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Admin> AdminList = new ArrayList<Admin>();
+		
+		try {
+			
+			  connection = DBConnection.getConnection();
+	          preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.get_admin_byid));
+	          preparedStatement.setString(CommonConstants.Column_Index_one, id);
+	          ResultSet rs = preparedStatement.executeQuery();
+	          
+	          while(rs.next() ) {
+	        	  
+	        	  Admin admin = new Admin();
+	        	  
+	        	  admin.setId(rs.getString(CommonConstants.Column_Index_one));
+	        	  admin.setUsername(rs.getString(CommonConstants.Column_Index_two));
+	        	  admin.setPassword(rs.getString(CommonConstants.Column_Index_three));
+	        	  admin.setRole(rs.getString(CommonConstants.Column_Index_four));
+	        	  
+	        	  AdminList.add(admin);
+	        	 
+	          }
+			
+		}catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
+		
+		return AdminList;
+	}
+
+	@Override
+	public void updateAdmin(String id, Admin admin) {
+		// TODO Auto-generated method stub
+		
+		try {
+
+            connection = DBConnection.getConnection();
+            preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.update_admin));
+
+            connection.setAutoCommit(false);
+            
+            System.out.print(id);
+
+            
+            // Hash the password before saving
+            String hashedPassword = CommonUtil.hashPassword(admin.getPassword());
+            admin.setPassword(hashedPassword);
+            
+
+            preparedStatement.setString(CommonConstants.Column_Index_one, admin.getUsername());
+            preparedStatement.setString(CommonConstants.Column_Index_two, admin.getPassword());
+            preparedStatement.setString(CommonConstants.Column_Index_three, admin.getRole());
+            preparedStatement.setString(CommonConstants.Column_Index_four, admin.getId());
+
+            preparedStatement.executeLargeUpdate();
+            connection.commit();
+
+        } catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
+		
+		
+	}
+
+	@Override
+	public void deleteAdmin(String id) {
+		// TODO Auto-generated method stub
+		
+		if (id != null && !id.isEmpty()) {
+			
+			try {
+				
+				connection = DBConnection.getConnection();
+				preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.delete_admin));
+				preparedStatement.setString(CommonConstants.Column_Index_one, id);
+				
+				preparedStatement.execute();
+				
+	        } catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+				
+			} finally {
+	            try {
+	                if (connection != null) {
+
+	                    connection.close();
+	                }
+	                if (preparedStatement != null) {
+	                	preparedStatement.close();
+	                }
+	            } catch (SQLException e){
+	                System.out.println("SQL error" + e.getMessage());
+	            }
+	        }
+		}
+			
 		
 	}
 

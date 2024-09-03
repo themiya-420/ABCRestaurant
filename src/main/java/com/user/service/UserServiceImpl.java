@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import com.admin.model.Admin;
 import com.user.model.User;
 import com.user.util.CommonConstants;
 import com.user.util.CommonUtil;
@@ -122,24 +123,176 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public ArrayList<User> getUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<User> UserList = new ArrayList<User>();
+		
+		try {
+			
+			  connection = DBConnection.getConnection();
+	          preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.get_users));
+
+	          ResultSet rs = preparedStatement.executeQuery();
+	          
+	          while(rs.next() ) {
+	        	  
+	        	  User user = new User();
+	        	  
+	        	  user.setId(rs.getString(CommonConstants.Column_Index_one));
+	        	  user.setUsername(rs.getString(CommonConstants.Column_Index_two));
+	        	  user.setPassword(rs.getString(CommonConstants.Column_Index_three));
+	        	  user.setEmail(rs.getString(CommonConstants.Column_Index_four));
+	        	  user.setPhone(rs.getString(CommonConstants.Column_Index_five));
+	        	  user.setRole(rs.getString(CommonConstants.Column_Index_six));
+	        	  
+	        	  UserList.add(user);
+	        	 
+	          }
+			
+		}catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
+		
+		return UserList;
 	}
 
 	@Override
-	public ArrayList<User> getUserById() {
+	public ArrayList<User> getUserById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<User> UserList = new ArrayList<User>();
+		
+		try {
+			
+			  connection = DBConnection.getConnection();
+	          preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.get_user_byid));
+	          preparedStatement.setString(CommonConstants.Column_Index_one, id);
+	          ResultSet rs = preparedStatement.executeQuery();
+	          
+	          while(rs.next() ) {
+	        	  
+	        	  User user = new User();
+	        	  
+	        	  user.setId(rs.getString(CommonConstants.Column_Index_one));
+	        	  user.setUsername(rs.getString(CommonConstants.Column_Index_two));
+	        	  user.setPassword(rs.getString(CommonConstants.Column_Index_three));
+	        	  user.setEmail(rs.getString(CommonConstants.Column_Index_four));
+	        	  user.setPhone(rs.getString(CommonConstants.Column_Index_five));
+	        	  user.setRole(rs.getString(CommonConstants.Column_Index_six));
+	        	  
+	        	  UserList.add(user);
+	        	 
+	          }
+			
+		}catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
+		
+		return UserList;
 	}
 
 	@Override
 	public void updateUser(String id, User user) {
 		// TODO Auto-generated method stub
+	
+		
+		try {
+
+			connection = DBConnection.getConnection();
+            preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.update_user));
+
+            connection.setAutoCommit(false);
+
+        
+            
+            // Hash the password before saving
+            String hashedPassword = CommonUtil.hashPassword(user.getPassword());
+            user.setPassword(hashedPassword);
+            
+
+           
+            preparedStatement.setString(CommonConstants.Column_Index_one, user.getUsername());
+            preparedStatement.setString(CommonConstants.Column_Index_two, user.getPassword());
+            preparedStatement.setString(CommonConstants.Column_Index_three, user.getEmail());
+            preparedStatement.setString(CommonConstants.Column_Index_four, user.getPhone());
+            preparedStatement.setString(CommonConstants.Column_Index_five, user.getRole());
+            preparedStatement.setString(CommonConstants.Column_Index_six, user.getId());
+
+            preparedStatement.executeLargeUpdate();
+            connection.commit();
+
+        } catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+
+            System.out.println("Connection error" + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                	preparedStatement.close();
+                }
+            } catch (SQLException e){
+                System.out.println("SQL error" + e.getMessage());
+            }
+        }
 		
 	}
 
 	@Override
 	public void deleteUser(String id) {
 		// TODO Auto-generated method stub
+		
+	if (id != null && !id.isEmpty()) {
+			
+			try {
+				
+				connection = DBConnection.getConnection();
+				preparedStatement = connection.prepareStatement(QueryUtil.QueryById(CommonConstants.delete_user));
+				preparedStatement.setString(CommonConstants.Column_Index_one, id);
+				
+				preparedStatement.execute();
+				
+	        } catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+				
+			} finally {
+	            try {
+	                if (connection != null) {
+
+	                    connection.close();
+	                }
+	                if (preparedStatement != null) {
+	                	preparedStatement.close();
+	                }
+	            } catch (SQLException e){
+	                System.out.println("SQL error" + e.getMessage());
+	            }
+	        }
+		}
 		
 	}
 	

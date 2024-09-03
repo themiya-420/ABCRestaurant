@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import ="com.admin.model.Admin" %>   
+<%@ page import ="com.admin.service.IAdminService" %>  
+<%@ page import ="com.admin.service.AdminServiceImpl" %> 
+<%@ page import ="java.util.ArrayList" %>  
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
- <script src="https://cdn.tailwindcss.com"></script>
-<title>ABC | Admin Home</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<title>ABC | Edit Admin(admins)</title>
 </head>
 <body>
 
@@ -93,36 +99,62 @@
         	</div>
         	
         	<div>
-        	<form action="<%= request.getContextPath()%>/admin-signup" method="post" class="w-[400px] mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold mb-6">Add Admins</h2>
-    <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="name">
-      Username:
-    </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" placeholder="Enter your name">
-    </div>
-    <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="email">
-      Password:
-    </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="password" placeholder="Enter your email">
-    </div>
-  	<div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="email">
-      Role:
-    </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="role" name="role" type="text" placeholder="Enter your email">
-    </div>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-    Submit
-  </button>
-</form>
+        	
+        	<% 
+        	
+        		String id = (String) request.getAttribute("id");
+        	
+        		IAdminService iAdminService = new AdminServiceImpl();
+        		
+        		ArrayList<Admin> AdminList = iAdminService.getAdminByID(id);
+        	
+        	%>
+        	
+        	
+        	<% for (Admin admins: AdminList) { %>
+        	
+        	
+        	<form action="<%= request.getContextPath()%>/UpdateAdminServelet" method="post" class="w-[400px] mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg">
+			    <h2 class="text-2xl font-bold mb-6">Edit Admins</h2>
+			     <div class="mb-4">
+			        <label class="block text-gray-700 font-bold mb-2" for="name">
+			      ID:
+			    </label>
+			        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id" name="id" value="<%= admins.getId() %>">
+			    </div>
+			    <div class="mb-4">
+			        <label class="block text-gray-700 font-bold mb-2" for="name">
+			      Username:
+			    </label>
+			        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" value="<%= admins.getUsername() %>">
+			    </div>
+			    <div class="mb-4">
+			        <label class="block text-gray-700 font-bold mb-2" for="email">
+			      Password:
+			    </label>
+			        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="text" value="<%= admins.getPassword() %>" >
+			    </div>
+			  	<div class="mb-4">
+			        <label class="block text-gray-700 font-bold mb-2" for="email">
+			      Role:
+			    </label>
+			        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="role" name="role" type="text" value="<%= admins.getRole() %>" >
+			    </div>
+			    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+			    Submit
+			  </button>
+		  </form>
+        	
+        	<% } %>
+        	
+    
         	</div>
         
         </div>
     </div>
     
 </div>
+
 
 </body>
 </html>

@@ -60,6 +60,46 @@
         ]]>
     </query>
     
+    <query id="get_users">
+        <![CDATA[
+           SELECT * FROM users;
+        ]]>
+    </query>
+    
+      <query id="get_admin">
+        <![CDATA[
+           SELECT * FROM admin;
+        ]]>
+    </query>
+    
+     <query id="get_user_byid">
+        <![CDATA[
+           SELECT * FROM users where id = ?;
+        ]]>
+    </query>
+    
+      <query id="get_admin_byid">
+        <![CDATA[
+           SELECT * FROM admin where id = ?;
+        ]]>
+    </query>
+    
+     <query id="update_admin">
+        <![CDATA[
+           UPDATE admin
+           SET username = ? , password = ? , role = ?
+           WHERE id = ?;
+        ]]>
+    </query>
+    
+     <query id="update_user">
+        <![CDATA[
+           UPDATE users
+           SET username = ? , password = ? , email = ? , phone = ? , role = ?
+           WHERE id = ?;
+        ]]>
+    </query>
+    
      <query id="signin_user">
         <![CDATA[
            SELECT password FROM users WHERE email = ?;
@@ -77,6 +117,18 @@
      <query id="signin_admin">
         <![CDATA[
            SELECT * FROM admin WHERE username = ?;
+        ]]>
+    </query>
+    
+    <query id="delete_admin">
+        <![CDATA[
+           DELETE from admin WHERE id = ?;
+        ]]>
+    </query>
+    
+     <query id="delete_user">
+        <![CDATA[
+           DELETE from users WHERE id = ?;
         ]]>
     </query>
     

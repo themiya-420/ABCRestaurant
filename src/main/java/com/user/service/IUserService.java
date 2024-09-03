@@ -12,7 +12,7 @@ public interface IUserService {
 
 	    public ArrayList<User> getUsers();
 
-	    public ArrayList<User> getUserById();
+	    public ArrayList<User> getUserById(String id);
 
 	    public void updateUser(String id, User user);
 

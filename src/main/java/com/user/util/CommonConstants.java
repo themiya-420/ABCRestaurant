@@ -44,8 +44,12 @@ public class CommonConstants {
     public static final String update_user = "update_user";
 
     public static final String delete_user = "delete_user";
+    
+    public static final String get_users = "get_users";
 
     public static final String get_user_ids = "get_user_ids";
+    
+    public static final String get_user_byid = "get_user_byid";
     
     //feedback constants
     public static final String Create_Feedback_Table = "create_feedback_table";
@@ -60,6 +64,17 @@ public class CommonConstants {
     public static final String signup_admin = "signup_admin";
     
     public static final String signin_admin = "signin_admin";
+    
+    public static final String get_admins = "get_admin";
+    
+    public static final String get_admin_byid = "get_admin_byid";
+    
+    public static final String update_admin = "update_admin";
+    
+    public static final String delete_admin = "delete_admin";
+
+    
+   
     
 
 }
