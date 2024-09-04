@@ -1,4 +1,4 @@
-package com.admin.servelet;
+package com.user.servelet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,23 +7,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-import com.admin.model.Admin;
-import com.admin.service.IAdminService;
-import com.admin.service.AdminServiceImpl;
+import com.reserve.model.Reserve;
+import com.reserve.service.ReserveServiceImpl;
+import com.reserve.service.IReserveService;
 
 /**
- * Servlet implementation class AdminSignupServelet
+ * Servlet implementation class AddReserveServelet
  */
-@WebServlet("/admin-signup")
-public class AdminSignupServelet extends HttpServlet {
+@WebServlet("/addReserve")
+public class AddReserveServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSignupServelet() {
+    public AddReserveServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,36 +40,41 @@ public class AdminSignupServelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		response.setContentType("text/html");
 		
-		Admin admin = new Admin();
+		Reserve reserve = new Reserve();
 		
-        admin.setUsername(request.getParameter("username"));
-        admin.setPassword(request.getParameter("password"));
-        admin.setRole(request.getParameter("role"));
-        
-        IAdminService iadminService = new AdminServiceImpl();
-        
-        
-        
-        
-        // PrintWriter to write response
+		reserve.setFname(request.getParameter("fname"));
+		reserve.setLname(request.getParameter("lname"));
+		reserve.setGuest(request.getParameter("guest"));
+		reserve.setPhone(request.getParameter("phone"));
+		reserve.setType(request.getParameter("type"));
+		reserve.setDate(request.getParameter("date").toString());
+		reserve.setTime(request.getParameter("time").toString());
+		
+		
+		IReserveService  iReserveService = new ReserveServiceImpl();
+//		ifeedbackService.addReserve(reserve);
+		
+		 // PrintWriter to write response
 	    PrintWriter out = response.getWriter();
 	    
 	    try {
-	    	iadminService.adminSignup(admin);
-	    	request.setAttribute("Admin", admin);
+	        iReserveService.addReserve(reserve);
 	        // Feedback successfully added
 	        out.println("<script type='text/javascript'>");
-	        out.println("alert('Admin Added Successfully !');");
-	        out.println("location='adminHome.jsp';");
+	        out.println("alert('Reservation SuccessFull you will be contacted.');");
+	        out.println("location='reserve.jsp';");
+	        out.println("</script>");
+	    } catch (Exception e) {
+	        // Error occurred while adding feedback
+	        out.println("<script type='text/javascript'>");
+	        out.println("alert('Error: Could Not Reserve Try again later.');");
 	        out.println("</script>");
 	    } finally {
 	        out.close();
 	    }
-        
-		
+
 	}
 
 }

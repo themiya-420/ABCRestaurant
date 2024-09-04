@@ -1,29 +1,29 @@
 package com.admin.servelet;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-import com.admin.model.Admin;
-import com.admin.service.IAdminService;
+import com.services.model.Service;
 import com.admin.service.AdminServiceImpl;
+import com.admin.service.IAdminService;
 
 /**
- * Servlet implementation class AdminSignupServelet
+ * Servlet implementation class UpdateServiceServelet
  */
-@WebServlet("/admin-signup")
-public class AdminSignupServelet extends HttpServlet {
+@WebServlet("/UpdateServiceServlet")
+public class UpdateServiceServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSignupServelet() {
+    public UpdateServiceServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,14 +41,20 @@ public class AdminSignupServelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		response.setContentType("text/html");
 		
-		Admin admin = new Admin();
+		Service service = new Service();
 		
-        admin.setUsername(request.getParameter("username"));
-        admin.setPassword(request.getParameter("password"));
-        admin.setRole(request.getParameter("role"));
+		String id = request.getParameter("id");
+		
+		
+		System.out.println(id + "This is from UpdateService Servlet");
+		service.setName(request.getParameter("name"));
+		service.setCategory(request.getParameter("category"));
+		service.setAvailability(request.getParameter("availability"));
+		service.setPrice(request.getParameter("price"));
+		service.setImage(request.getParameter("image"));
+		service.setDetails(request.getParameter("details"));
         
         IAdminService iadminService = new AdminServiceImpl();
         
@@ -59,18 +65,16 @@ public class AdminSignupServelet extends HttpServlet {
 	    PrintWriter out = response.getWriter();
 	    
 	    try {
-	    	iadminService.adminSignup(admin);
-	    	request.setAttribute("Admin", admin);
+	    	iadminService.updateService(id ,service);
+	    	request.setAttribute("Service", service);
 	        // Feedback successfully added
 	        out.println("<script type='text/javascript'>");
-	        out.println("alert('Admin Added Successfully !');");
-	        out.println("location='adminHome.jsp';");
+	        out.println("alert('Service Added Successfully !');");
+	        out.println("location='staffView.jsp';");
 	        out.println("</script>");
 	    } finally {
 	        out.close();
 	    }
-        
-		
 	}
 
 }

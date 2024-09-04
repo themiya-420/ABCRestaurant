@@ -16,6 +16,22 @@
         ]]>
     </query>
     
+     <query id="create_reserve_table">
+        <![CDATA[
+            CREATE TABLE reserve (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                fname varchar(255) NOT NULL,
+                lname varchar(500) NOT NULL,
+                guest varchar(255),
+                phone varchar(10),
+                type varchar(255),
+                date varchar(40),
+                time varchar(40)
+               
+            );
+        ]]>
+    </query>
+    
     <query id="create_feedback_table">
     
     	  <![CDATA[
@@ -40,10 +56,39 @@
         ]]>
     </query>
     
+    <query id="create_service_table">
+        <![CDATA[
+            CREATE TABLE service (
+                id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                name varchar(255) NOT NULL,
+                category varchar(255) NOT NULL,
+                availability varchar(500) NOT NULL,
+                price varchar(255),
+                image TEXT,
+                details TEXT
+                
+            )
+        ]]>
+    </query>
+    
      <query id="add_feedback">
         <![CDATA[
             INSERT INTO  feedback(name, email, message)
             VALUES(?, ?, ?)
+        ]]>
+    </query>
+    
+      <query id="add_service">
+        <![CDATA[
+            INSERT INTO  service(name, category, availability, price, image, details)
+            VALUES(?, ?, ?, ?, ?, ?)
+        ]]>
+    </query>
+    
+    <query id="add_reserve">
+        <![CDATA[
+            INSERT INTO  reserve(fname, lname, guest, phone, type, date, time)
+            VALUES(?, ?, ?, ?, ?, ?, ?)
         ]]>
     </query>
 
@@ -66,9 +111,27 @@
         ]]>
     </query>
     
+    <query id="get_reserves">
+        <![CDATA[
+           SELECT * FROM reserve;
+        ]]>
+    </query>
+    
+      <query id="get_services">
+        <![CDATA[
+           SELECT * FROM service;
+        ]]>
+    </query>
+    
       <query id="get_admin">
         <![CDATA[
            SELECT * FROM admin;
+        ]]>
+    </query>
+    
+    <query id="get_feedbacks">
+        <![CDATA[
+           SELECT * FROM feedback;
         ]]>
     </query>
     
@@ -84,6 +147,12 @@
         ]]>
     </query>
     
+      <query id="get_service_byid">
+        <![CDATA[
+           SELECT * FROM service where id = ?;
+        ]]>
+    </query>
+    
      <query id="update_admin">
         <![CDATA[
            UPDATE admin
@@ -96,6 +165,14 @@
         <![CDATA[
            UPDATE users
            SET username = ? , password = ? , email = ? , phone = ? , role = ?
+           WHERE id = ?;
+        ]]>
+    </query>
+    
+      <query id="update_service">
+        <![CDATA[
+           UPDATE service
+           SET name = ? , category = ? , availability = ? , price = ? , image = ? , details = ?
            WHERE id = ?;
         ]]>
     </query>
@@ -129,6 +206,24 @@
      <query id="delete_user">
         <![CDATA[
            DELETE from users WHERE id = ?;
+        ]]>
+    </query>
+    
+     <query id="delete_service">
+        <![CDATA[
+           DELETE from service WHERE id = ?;
+        ]]>
+    </query>
+    
+    <query id="delete_feedback">
+        <![CDATA[
+           DELETE from feedback WHERE id = ?;
+        ]]>
+    </query>
+    
+     <query id="delete_reserve">
+        <![CDATA[
+           DELETE from reserve WHERE id = ?;
         ]]>
     </query>
     
